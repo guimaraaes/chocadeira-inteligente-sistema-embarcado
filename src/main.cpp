@@ -1,20 +1,24 @@
 #include <Arduino.h>
 #include "../module/comunicacao.cpp"
-#include "../module/controle.cpp"
+#include "../module/temperatura.cpp"
+#include "../module/umidade.cpp"
+#include "../module/viragem.cpp"
 Comunicacao com;
-Controle controle;
+Temperatura temp;
+Umidade umid;
+Viragem vir;
 
 void setup()
 {
-  com.connectWIFI();
-
   // put your setup code here, to run once:
+  com.connectWIFI();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
 
-  controle.acionamento(true, com.getProcess().temperatura, com.CI().temperatura);
-  controle.acionamento(false, com.getProcess().umidade, com.CI().umidade);
+  temp.acionamento(com.getProcess().temperatura, com.CI().temperatura);
+  umid.acionamento(com.getProcess().umidade, com.CI().umidade);
+  vir.acionamento(com.getHorario(), com.getUltimaViragem());
 }

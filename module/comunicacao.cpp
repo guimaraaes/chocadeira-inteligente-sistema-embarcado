@@ -87,11 +87,13 @@ public:
             Serial.println("WiFi Disconnected");
         return padrao;
     }
-    void getUltimaViragem()
+    int getUltimaViragem()
     {
+        return 0;
     }
-    void getHorario()
+    int getHorario()
     {
+        return 0;
     }
     TempUmiDados CI()
     {
